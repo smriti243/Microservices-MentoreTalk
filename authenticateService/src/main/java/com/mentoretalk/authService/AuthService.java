@@ -19,25 +19,32 @@ public class AuthService {
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
     // User Registration
-    public String register(User user) {
+    public void register(User user) throws Exception {
         // Check if the email already exists
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            throw new RuntimeException("Email is already registered!");
+        if (userRepository.existsByEmail(user.getEmail())) {
+            throw new Exception("Email is already registered!");
         }
-        // Hash the password and save the user
+
+        // Encrypt the user's password before saving
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        // Save the user to the database
         userRepository.save(user);
-        return "User registered successfully!";
     }
 
     // User Login
-    public String login(String email, String password) {
-        User user = userRepository.findByEmail(email);
-        if (user == null || !passwordEncoder.matches(password, user.getPassword())) {
-            throw new RuntimeException("Invalid email or password!");
+    public String login(String email, String password) throws Exception {
+        // Fetch user from the database
+        User user = userRepository.findByEmail(email)
+                .orElseThrow(() -> new Exception("User not found"));
+
+        // Validate the password
+        if (!passwordEncoder.matches(password, user.getPassword())) {
+            throw new Exception("Invalid email or password!");
         }
-        // Generate JWT token
-        return jwtUtil.generateToken(email);
+
+        // Generate and return a JWT token
+        return jwtUtil.generateToken(user.getEmail());
     }
 
     // Token Validation

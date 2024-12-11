@@ -11,11 +11,11 @@ import java.util.Date;
 
 @Component
 public class JwtUtil {
-    private static final SecretKey SECRET_KEY = Keys.hmacShaKeyFor("your_secret_key_your_secret_key".getBytes());
+    private static final SecretKey SECRET_KEY = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private static final int EXPIRATION_TIME = 3600000; // 1 hour in milliseconds
 
     // Generate Token
-    public String generateToken(String email) {
+    public static String generateToken(String email) {
         return Jwts.builder()
                 .setSubject(email)
                 .setIssuedAt(new Date())

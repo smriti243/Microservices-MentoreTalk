@@ -1,3 +1,8 @@
+package com.mentoretalk.model;
+import java.util.Date;
+import jakarta.persistence.Embeddable;
+
+@Embeddable
 public class Experience {
     private String company;
     private String jobTitle;

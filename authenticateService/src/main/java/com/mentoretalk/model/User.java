@@ -2,6 +2,7 @@ package com.mentoretalk.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
+// import javax.validation.constraints.*;
 
 @Document(collection = "users")
 public class User {
@@ -10,7 +11,8 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private String bio;
+    private Role role;
+;
 
     // Getters and Setters for all fields
     public String getId() {
@@ -29,6 +31,7 @@ public class User {
         this.username = username;
     }
 
+    // @Email
     public String getEmail() {
         return email;
     }
@@ -45,12 +48,12 @@ public class User {
         this.password = password;
     }
 
-    public String getBio() {
-        return bio;
+    public Role getRole() {
+        return role;
     }
 
-    public void setBio(String bio) {
-        this.bio = bio;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     // Other methods, if necessary

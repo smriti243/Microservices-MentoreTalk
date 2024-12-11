@@ -230,18 +230,72 @@ const SignupPage = () => {
 
   const navigate = useNavigate(); // Initialize useNavigate
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setError('');
+  //   setSuccess(false);
+  
+  //   if (!agreeToTerms) {
+  //     setError('You must agree to the Terms and Conditions');
+  //     return;
+  //   }
+  
+  //   try {
+  //     const response = await fetch('http://localhost:8080/api/auth/signup', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         username,
+  //         email,
+  //         password,
+  //         role,
+  //       }),
+  //     });
+  
+  //     const data = await response.json();
+  //     console.log('Response data:', data); // Log response data
+
+
+  //     if (!response.ok) {
+  //       const errorData = await response.json();  // Get the response as JSON
+  //       throw new Error(errorData.error || "Signup failed");
+  //   }
+  
+  //     if (response.ok) {
+  //       console.log('Signup successful. Navigating...');
+  //       setSuccess(true);
+  //       localStorage.setItem('token', data.token);
+        
+  //       if (role === 'mentor') {
+  //         // Navigating to the mentor profile completion page
+  //         navigate('/mentor-profile-completion');
+  //       } else {
+  //         // Navigating to the feed page
+  //         navigate('/feed');
+  //       }
+  //     } else {
+  //       setError(data.message || 'An error occurred during signup');
+  //     }
+  //   } catch (err) {
+  //     console.error('Error during signup:', err);
+  //     setError('An error occurred. Please try again later.');
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setSuccess(false);
-
+  
     if (!agreeToTerms) {
       setError('You must agree to the Terms and Conditions');
       return;
     }
-
+  
     try {
-      const response = await fetch('http://localhost:5000/api/auth/signup', {
+      const response = await fetch('http://localhost:8080/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -250,38 +304,36 @@ const SignupPage = () => {
           username,
           email,
           password,
-          role
+          role,
         }),
       });
-
-      const data = await response.json();
-
+  
+      // Check if the response is successful
       if (response.ok) {
+        const token = await response.text(); // Get the response as plain text (Bearer token)
+  
+        console.log('Response token:', token); // Log the token
+  
         setSuccess(true);
-        localStorage.setItem('token', data.token);
-
+        localStorage.setItem('token', token); // Store the Bearer token in localStorage
+  
+        // Redirect based on role
         if (role === 'mentor') {
-          // Redirect mentors to the profile completion page after signup
-          setTimeout(() => {
-            navigate('/mentor-profile-completion');
-          }, 2000);
+          navigate('/mentor-profile-completion'); // Navigate to mentor profile completion page
         } else {
-          // Redirect other users to the feed page
-          setTimeout(() => {
-            navigate('/feed');
-          }, 2000);
+          navigate('/feed'); // Navigate to the feed page for students
         }
-
-
-        // Redirect to login page after successful signup
-       // Optional delay before redirect
       } else {
-        setError(data.message || 'An error occurred during signup');
+        const errorMessage = await response.text(); // Get the error message as plain text
+        throw new Error(errorMessage || 'Signup failed');
       }
     } catch (err) {
+      console.error('Error during signup:', err);
       setError('An error occurred. Please try again later.');
     }
   };
+  
+  
 
   return (
     <PageWrapper>

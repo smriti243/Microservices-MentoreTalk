@@ -1,9 +1,9 @@
-package com.example.repository;
+package com.mentoretalk.repository;
 
-import com.example.model.User;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.mentoretalk.model.User;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends MongoRepository<User, String> {
     // Add custom queries if required
     User findByEmail(String email);
 }

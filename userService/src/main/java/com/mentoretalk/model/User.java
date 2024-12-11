@@ -1,4 +1,8 @@
-package com.example.model;
+package com.mentoretalk.model;
+import com.mentoretalk.model.enums.Role;
+import com.mentoretalk.model.Education;
+import com.mentoretalk.model.MentorSession;
+import com.mentoretalk.model.enums.TeachingExperience;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -9,7 +13,6 @@ import java.util.List;
 
 @Document(collection = "users") // MongoDB collection name
 public class User {
-
     @Id
     private String id; // MongoDB's ID is typically a String
 
@@ -54,7 +57,27 @@ public class User {
     private Date createdAt = new Date(); // Default to the current date
 
     // Constructors, getters, setters, etc.
-    public User() {}
+    public User() {
+        
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+
 
     // Add any custom methods here (e.g., hashing password)
 }

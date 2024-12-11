@@ -1,25 +1,16 @@
-@Entity
+package com.mentoretalk.model;
+import com.mentoretalk.model.enums.NotificationType;
+
+import java.util.Date;
+
 public class Notification {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    private String id;
     private String message;
-
-    @Enumerated(EnumType.STRING)
-    private NotificationType type;
-
-    @ManyToOne
+    private NotificationType type;  // Change to NotificationType enum
     private User sender;
-
     private Boolean read = false;
-
-    @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt = new Date();
 
     // Getters and Setters
-}
-
-public enum NotificationType {
-    CONNECTION_REQUEST, CONNECTION_ACCEPT
 }
