@@ -7,7 +7,7 @@ import org.springframework.data.annotation.Id;
 @Document(collection = "users")
 public class User {
     @Id
-    private String id;
+    // private String id;
     private String username;
     private String email;
     private String password;
@@ -15,13 +15,13 @@ public class User {
 ;
 
     // Getters and Setters for all fields
-    public String getId() {
-        return id;
-    }
+    // public String getId() {
+    //     return id;
+    // }
 
-    public void setId(String id) {
-        this.id = id;
-    }
+    // public void setId(String id) {
+    //     this.id = id;
+    // }
 
     public String getUsername() {
         return username;

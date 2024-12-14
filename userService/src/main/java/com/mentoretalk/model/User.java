@@ -1,4 +1,5 @@
 package com.mentoretalk.model;
+
 import com.mentoretalk.model.enums.Role;
 import com.mentoretalk.model.Education;
 import com.mentoretalk.model.MentorSession;
@@ -7,12 +8,15 @@ import com.mentoretalk.model.enums.TeachingExperience;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
 
+@Component
 @Document(collection = "users") // MongoDB collection name
 public class User {
+
     @Id
     private String id; // MongoDB's ID is typically a String
 
@@ -22,7 +26,7 @@ public class User {
 
     private Role role; // Enum for mentor or student
 
-    private String bio;
+    private String bio; // Mentor's bio
 
     private String profilePicture; // URL for profile picture
 
@@ -42,7 +46,7 @@ public class User {
 
     private List<String> previousCompanies;
 
-    private List<String> skills;
+    private List<String> skills; // Mentor's skills
 
     private List<String> mentorSpecialty;
 
@@ -56,9 +60,11 @@ public class User {
 
     private Date createdAt = new Date(); // Default to the current date
 
+    // Profile completion flag
+    private boolean isProfileComplete;
+
     // Constructors, getters, setters, etc.
     public User() {
-        
     }
 
     public String getUsername() {
@@ -77,7 +83,14 @@ public class User {
         this.password = password;
     }
 
+    // Additional getters and setters for new fields
+    public boolean getIsProfileComplete() {
+        return isProfileComplete;
+    }
 
+    public void setIsProfileComplete(boolean isProfileComplete) {
+        this.isProfileComplete = isProfileComplete;
+    }
 
-    // Add any custom methods here (e.g., hashing password)
+    // Add other getters and setters as necessary for new fields
 }

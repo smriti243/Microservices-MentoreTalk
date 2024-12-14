@@ -164,7 +164,7 @@ const BackFace = styled(Text3DFace)`
 
 // Define the LoginPage component
 const LoginPage = () => {
-  const [usernameOrEmail, setUsernameOrEmail] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -173,30 +173,32 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
-
+  
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('http://localhost:8080/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ usernameOrEmail, password }),
+        body: JSON.stringify({ email, password }),
       });
-
-      const data = await response.json();
-      console.log('Login response:', data);
-
+  
       if (response.ok) {
+        const token = await response.text(); // Get the response as plain text (Bearer token)
+        console.log('Response token:', token);
         setSuccess(true);
-        localStorage.setItem('token', data.token);
+        localStorage.setItem('token', token);
         navigate('/feed');
       } else {
+        const data = await response.json(); // Parse error message if response is not OK
         setError(data.message || 'Login failed. Please check your credentials.');
       }
     } catch (err) {
       setError('An error occurred. Please try again later.');
+      console.log(err);
     }
   };
+  
 
   return (
     <PageWrapper>
@@ -218,8 +220,8 @@ const LoginPage = () => {
             <Input
               type="text"
               placeholder="Username or Email"
-              value={usernameOrEmail}
-              onChange={(e) => setUsernameOrEmail(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
             />
             <Input

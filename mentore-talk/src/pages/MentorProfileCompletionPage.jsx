@@ -214,7 +214,7 @@ const MentorProfileCompletion = () => {
         if (!token) {
           throw new Error('No token found');
         }
-        await axios.put('http://localhost:5000/api/users/profile', formData, {
+        await axios.put('http://localhost:8082/api/users/profile', formData, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

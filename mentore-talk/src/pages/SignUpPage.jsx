@@ -295,7 +295,8 @@ const SignupPage = () => {
     }
   
     try {
-      const response = await fetch('http://localhost:8080/api/auth/signup', {
+      // const response = await fetch('http://localhost:8080/api/auth/signup', {
+        const response = await fetch('http://localhost:8080/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -354,7 +355,7 @@ const SignupPage = () => {
             <ToggleButton active={role === 'mentor'} onClick={() => setRole('mentor')}>
               Sign up as a Mentor
             </ToggleButton>
-            <ToggleButton active={role === 'student'} onClick={() => setRole('student')}>
+            <ToggleButton active={role === 'user'} onClick={() => setRole('user')}>
               Sign up as a Student
             </ToggleButton>
           </ToggleButtonGroup>
