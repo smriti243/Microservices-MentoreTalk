@@ -1,4 +1,4 @@
-package com.mentoretalk.model;
+package com.mentoretalk.userService.model;
 import java.util.Date;
 
 import org.springframework.data.annotation.Id;

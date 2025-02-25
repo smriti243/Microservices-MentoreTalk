@@ -1,4 +1,4 @@
-package com.mentoretalk.model.enums;
+package com.mentoretalk.userService.model.enums;
 public enum TeachingExperience {
     PROFESSOR, 
     CORPORATE_MENTOR,

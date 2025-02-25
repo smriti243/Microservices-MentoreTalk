@@ -1,6 +1,6 @@
 package com.mentoretalk.repository;
 
-import com.mentoretalk.model.User;
+import com.mentoretalk.userService.model.User;
 
 // import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;

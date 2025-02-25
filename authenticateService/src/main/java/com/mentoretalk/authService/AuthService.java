@@ -1,7 +1,7 @@
 package com.mentoretalk.authService;
 
 import java.util.Arrays;
-import com.mentoretalk.model.User;
+import com.mentoretalk.userService.model.User;
 import com.mentoretalk.repository.UserRepository;
 import com.mentoretalk.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;

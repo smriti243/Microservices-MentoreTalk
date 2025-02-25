@@ -34,6 +34,10 @@
 
 	
 <repositories>
+	<repository>
+		<id>local-repo</id>
+		<url>C://Users/iamar/.m2/repository</url>
+	</repository>
 	 <repository>
         <id>central</id>
         <url>https://repo.maven.apache.org/maven2</url>
@@ -97,11 +101,13 @@
 			<artifactId>spring-boot-starter-data-mongodb</artifactId>
 		</dependency>
 
-		<dependency>
-    <groupId>com.mentoretalk</groupId>
-    <artifactId>userService</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-</dependency>
+	<dependency>
+		<groupId>com.mentoretalk</groupId>
+		<artifactId>userService</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		<scope>compile</scope>
+	</dependency>
+
 
 
 	<dependency>
@@ -216,7 +222,7 @@
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-compiler-plugin</artifactId>
             <version>3.10.1</version>
-            <configuration>
+            <!-- <configuration>
                 <annotationProcessorPaths>
                     <path>
                         <groupId>org.springframework.boot</groupId>
@@ -224,6 +230,10 @@
                         <version>3.1.0</version>
                     </path>
                 </annotationProcessorPaths>
+            </configuration> -->
+			<configuration>
+                <source>1.8</source>
+                <target>1.8</target>
             </configuration>
         </plugin>
 			<plugin>

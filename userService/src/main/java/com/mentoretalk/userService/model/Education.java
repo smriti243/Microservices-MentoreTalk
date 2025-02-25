@@ -1,4 +1,4 @@
-package com.mentoretalk.model;
+package com.mentoretalk.userService.model;
 
 import jakarta.persistence.Embeddable;
 

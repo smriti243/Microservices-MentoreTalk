@@ -1,5 +1,5 @@
-package com.mentoretalk.model;
-import com.mentoretalk.model.enums.NotificationType;
+package com.mentoretalk.userService.model;
+import com.mentoretalk.userService.model.enums.NotificationType;
 
 import java.util.Date;
 

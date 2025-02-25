@@ -2,7 +2,7 @@
 package com.mentoretalk.mentorProfileCompletion.mentorService;
 
 
-import com.mentoretalk.model.User;
+import com.mentoretalk.userService.model.User;
 import com.mentoretalk.mentorProfileCompletion.dto.MentorProfileCompletionDTO;
 import com.mentoretalk.mentorProfileCompletion.repository.mentorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ public class mentorService {
 
     public void updateProfile(MentorProfileCompletionDTO profileDTO) {
         // Validate and map DTO to entity
-        MentorProfile mentorProfile = new MentorProfile();
+        User mentorProfile = new User();
         mentorProfile.setExperience(profileDTO.getExperience());
         mentorProfile.setEducation(profileDTO.getEducation());
         mentorProfile.setSkills(profileDTO.getSkills());
